@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class CommissionCalculatorTest extends TestCase
 {
-    private array $desiredResults = [
+    private array $expectedResults = [
         0.60,
         3.00,
         0.00,
@@ -38,7 +38,7 @@ class CommissionCalculatorTest extends TestCase
         $calculator->setOperationsDataSource(new \CommissionCalculator\Service\CSVIterator($testCSV));
 
         foreach($calculator->generateCommission() as $key => $commission) {
-            self::assertEquals($this->desiredResults[$key], number_format($commission, 2));
+            self::assertEquals($this->expectedResults[$key], number_format($commission, 2));
         }
 
     }

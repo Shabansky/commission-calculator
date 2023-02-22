@@ -23,7 +23,7 @@ class CommissionCalculator
     public function setCurrencyConverter(bool|string $converterData): void
     {
         if ($converterData === false) {
-            throw new \RuntimeException('Currencies source could not be opened.');
+            throw new \RuntimeException('Currencies source could not be found. Perhaps the URL is wrong?');
         }
 
         $this->currencyConverter = new CurrencyConverter();
