@@ -23,6 +23,11 @@ class CommissionCalculatorTest extends TestCase
         66.48        //Originally 8612
     ];
 
+    /**
+     * @covers \CommissionCalculator\Service\CommissionCalculator::setCurrencyConverter
+     * @covers \CommissionCalculator\Service\CommissionCalculator::setOperationsDataSource
+     * @covers \CommissionCalculator\Service\CommissionCalculator::generateCommission
+     */
     public function testCSVInputProducesDesiredResults(): void
     {
         $testCSV = 'tests/assets/test.csv';

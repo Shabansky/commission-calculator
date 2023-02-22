@@ -32,6 +32,14 @@ class OperationDataTest extends TestCase
         self::assertEquals($operation, $data->userOperation);
     }
 
+    /**
+     * @covers \CommissionCalculator\Service\OperationData::setAmount
+     * @covers \CommissionCalculator\Service\OperationData::setDate
+     * @covers \CommissionCalculator\Service\OperationData::setCurrency
+     * @covers \CommissionCalculator\Service\OperationData::setUserId
+     * @covers \CommissionCalculator\Service\OperationData::setUserType
+     * @covers \CommissionCalculator\Service\OperationData::setUserOperation
+     */
     public function testNegativeAmountThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -45,6 +53,14 @@ class OperationDataTest extends TestCase
         $data = new OperationData($amount, $date, $currency, $userId, $userType, $operation);
     }
 
+    /**
+     * @covers \CommissionCalculator\Service\OperationData::setAmount
+     * @covers \CommissionCalculator\Service\OperationData::setDate
+     * @covers \CommissionCalculator\Service\OperationData::setCurrency
+     * @covers \CommissionCalculator\Service\OperationData::setUserId
+     * @covers \CommissionCalculator\Service\OperationData::setUserType
+     * @covers \CommissionCalculator\Service\OperationData::setUserOperation
+     */
     public function testInvalidDateThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
