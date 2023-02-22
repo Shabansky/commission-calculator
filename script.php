@@ -6,10 +6,17 @@ use \CommissionCalculator\Service\CommissionCalculator;
 
 $calculator = new CommissionCalculator();
 
+array_shift($argv);
+
 try {
-    $currencyData = getCurrencyDataViaURL('https://developers.paysera.com/tasks/api/currency-exchange-rates');
+    if(!isset($argv[0], $argv[1])) {
+        throw new \RuntimeException("Missing arguments. Requires the CSV data source as the first argument and the currencies URL as the second.");
+    }
+    [$csvDataSource, $currencyURL] = $argv;
+
+    $currencyData = getCurrencyDataViaURL($currencyURL);
     $calculator->setCurrencyConverter($currencyData);
-    $calculator->setOperationsDataSource(new \CommissionCalculator\Service\CSVIterator('test.csv'));
+    $calculator->setOperationsDataSource(new \CommissionCalculator\Service\CSVIterator($csvDataSource));
 } catch (\RuntimeException $e) {
     print_r($e->getMessage() . PHP_EOL);
     exit;
