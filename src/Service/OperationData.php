@@ -39,7 +39,7 @@ class OperationData
 
     private function setDate(string $date): void
     {
-        if(strtotime($date) === false) {
+        if (strtotime($date) === false) {
             throw new \InvalidArgumentException('Date format is unreadable');
         }
         $this->date = $date;
