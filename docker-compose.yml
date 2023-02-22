@@ -1,0 +1,6 @@
+services:
+  app:
+    image: php:8.1-cli
+    volumes:
+      - ./:/var/www
+    command: tail -f /dev/null
