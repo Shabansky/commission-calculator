@@ -42,7 +42,7 @@ class CommissionCalculator
     {
         foreach ($this->operationsDataSource as $row) {
             try {
-                $data = new OperationData(...$row);
+                $data = new OperationData($row);
                 $commission = $this->getCommissionFromOperation($data);
                 $this->operationsRegistry->add($data);
                 yield $commission;

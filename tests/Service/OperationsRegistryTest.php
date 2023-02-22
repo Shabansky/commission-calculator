@@ -19,7 +19,7 @@ class OperationsRegistryTest extends TestCase
     public function testAddPopulatesRegistry(): void
     {
         $registry = new OperationsRegistry();
-        $data = new OperationData(100, '2023-01-01', 'EUR', 1, 'private', 'deposit');
+        $data = new OperationData(['2023-01-01', 1, 'private', 'deposit', 100, 'EUR']);
 
         self::assertCount(0, $registry->getAll());
         $registry->add($data);
@@ -33,7 +33,7 @@ class OperationsRegistryTest extends TestCase
     public function testNonexistentUserIdReturnsEmptyArray(): void
     {
         $registry = new OperationsRegistry();
-        $data = new OperationData(100, '2023-01-01', 'EUR', 1, 'private', 'deposit');
+        $data = new OperationData(['2023-01-01', 1, 'private', 'deposit', 100, 'EUR']);
 
         $registry->add($data);
         self::assertCount(0, $registry->getByUserId(2));
@@ -46,7 +46,8 @@ class OperationsRegistryTest extends TestCase
     public function testNonexistentOperationForUserIdReturnsEmptyArray(): void
     {
         $registry = new OperationsRegistry();
-        $data = new OperationData(100, '2023-01-01', 'EUR', 1, 'private', 'deposit');
+
+        $data = new OperationData(['2023-01-01', 1, 'private', 'deposit', 100, 'EUR']);
 
         $registry->add($data);
         self::assertCount(0, $registry->getByUserIdAndOperationType(2, 'withdraw'));

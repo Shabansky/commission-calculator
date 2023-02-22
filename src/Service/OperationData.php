@@ -14,19 +14,28 @@ class OperationData
     public readonly string $userOperation;
 
     public function __construct(
-        float $amount,
-        string $date,
-        string $currency,
-        int $userId,
-        string $userType,
-        string $userOperation,
+        array $data
     ) {
-        $this->setAmount($amount);
-        $this->setDate($date);
-        $this->setCurrency($currency);
-        $this->setUserId($userId);
-        $this->setUserType($userType);
-        $this->setUserOperation($userOperation);
+        $this->validateInputRow($data);
+    }
+
+    private function validateInputRow(array $row): void
+    {
+        if (count($row) !== $this->getNumberDataFields()) {
+            throw new \InvalidArgumentException('Operation Row has wrong number of fields');
+        }
+
+        $this->setDate($row[0]);
+        $this->setUserId((int) $row[1]);
+        $this->setUserType($row[2]);
+        $this->setUserOperation($row[3]);
+        $this->setAmount((float) $row[4]);
+        $this->setCurrency($row[5]);
+    }
+
+    private function getNumberDataFields(): int
+    {
+        return count(get_class_vars(__CLASS__));
     }
 
     private function setAmount(float $amount): void

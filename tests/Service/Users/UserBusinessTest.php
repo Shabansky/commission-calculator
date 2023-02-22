@@ -29,7 +29,7 @@ class UserBusinessTest extends TestCase
      */
     public function testDepositUsesNormalCommission(): void
     {
-        $data = new OperationData(1000,'2022-01-01','EUR',1,'private','deposit');
+        $data = new OperationData(['2022-01-01', 1, 'private', 'deposit', 1000, 'EUR']);
         $registry = new OperationsRegistry();
         $user = new UserBusiness($data,$registry,$this->converter);
 
@@ -42,7 +42,7 @@ class UserBusinessTest extends TestCase
      */
     public function testWithdrawUsesNormalCommission(): void
     {
-        $data = new OperationData(1000,'2022-01-01','EUR',1,'business','withdraw');
+        $data = new OperationData(['2023-01-01', 1, 'private', 'withdraw', 1000, 'EUR']);
         $registry = new OperationsRegistry();
         $user = new UserBusiness($data,$registry,$this->converter);
 

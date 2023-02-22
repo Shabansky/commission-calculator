@@ -34,7 +34,7 @@ class UserPrivateTest extends TestCase
      */
     public function testDepositUsesNormalCommission(): void
     {
-        $data = new OperationData(1000,'2022-01-01','EUR',1,'private','deposit');
+        $data = new OperationData(['2022-01-01', 1, 'private', 'deposit', 1000, 'EUR']);
         $registry = new OperationsRegistry();
         $user = new UserPrivate($data,$registry,$this->converter);
 
@@ -47,7 +47,7 @@ class UserPrivateTest extends TestCase
      */
     public function testPrivateWithdrawUnderOfferAmountUsesOfferCommission(): void
     {
-        $data = new OperationData(800,'2022-01-01','EUR',1,'private','withdraw');
+        $data = new OperationData(['2022-01-01', 1, 'private', 'withdraw', 800, 'EUR']);
         $registry = new OperationsRegistry();
         $user = new UserPrivate($data,$registry,$this->converter);
 
@@ -60,7 +60,7 @@ class UserPrivateTest extends TestCase
      */
     public function testPrivateWithdrawOverOfferAmountUsesMixedCommission(): void
     {
-        $data = new OperationData(2000,'2022-01-01','EUR',1,'private','withdraw');
+        $data = new OperationData(['2022-01-01', 1, 'private', 'withdraw', 2000, 'EUR']);
         $registry = new OperationsRegistry();
         $user = new UserPrivate($data,$registry,$this->converter);
 
@@ -73,10 +73,10 @@ class UserPrivateTest extends TestCase
      */
     public function testFirstThreeWithdrawsWeeklyUnderOfferAmountUseOfferCommission(): void
     {
-        $data = new OperationData(200,'2022-01-01','EUR',1,'private','withdraw');
+        $data = new OperationData(['2022-01-01', 1, 'private', 'withdraw', 200, 'EUR']);
         $registry = new OperationsRegistry();
-        $registry->add(new OperationData(400,'2022-01-01','EUR',1,'private','withdraw'));
-        $registry->add(new OperationData(400,'2022-01-01','EUR',1,'private','withdraw'));
+        $registry->add(new OperationData(['2022-01-01', 1, 'private', 'withdraw', 400, 'EUR']));
+        $registry->add(new OperationData(['2022-01-01', 1, 'private', 'withdraw', 400, 'EUR']));
 
         $user = new UserPrivate($data,$registry,$this->converter);
 
@@ -89,10 +89,10 @@ class UserPrivateTest extends TestCase
      */
     public function testFirstThreeWithdrawsWeeklyOverOfferAmountUseMixedCommission(): void
     {
-        $data = new OperationData(600,'2022-01-01','EUR',1,'private','withdraw');
+        $data = new OperationData(['2022-01-01', 1, 'private', 'withdraw', 600, 'EUR']);
         $registry = new OperationsRegistry();
-        $registry->add(new OperationData(400,'2022-01-01','EUR',1,'private','withdraw'));
-        $registry->add(new OperationData(400,'2022-01-01','EUR',1,'private','withdraw'));
+        $registry->add(new OperationData(['2022-01-01', 1, 'private', 'withdraw', 400, 'EUR']));
+        $registry->add(new OperationData(['2022-01-01', 1, 'private', 'withdraw', 400, 'EUR']));
 
         $user = new UserPrivate($data,$registry,$this->converter);
 

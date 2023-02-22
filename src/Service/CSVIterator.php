@@ -41,16 +41,9 @@ class CSVIterator implements \Iterator
         return $this->key;
     }
 
-    public function current(): array
+    public function current(): mixed
     {
-        return [
-            'amount' => (float) $this->current[4],
-            'date' => $this->current[0],
-            'currency' => $this->current[5],
-            'userId' => (int) $this->current[1],
-            'userType' => $this->current[2],
-            'userOperation' => $this->current[3],
-        ];
+        return $this->current;
     }
 
     public function next(): void

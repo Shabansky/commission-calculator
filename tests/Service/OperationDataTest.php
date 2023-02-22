@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 class OperationDataTest extends TestCase
 {
+
     /**
      * @coversNothing
      */
@@ -22,7 +23,16 @@ class OperationDataTest extends TestCase
         $userType = 'business';
         $operation = 'withdraw';
 
-        $data = new OperationData($amount, $date, $currency, $userId, $userType, $operation);
+        $data = new OperationData(
+            [
+                $date,
+                $userId,
+                $userType,
+                $operation,
+                $amount,
+                $currency
+            ]
+        );
 
         self::assertEquals($amount, $data->amount);
         self::assertEquals($date, $data->date);
@@ -50,7 +60,16 @@ class OperationDataTest extends TestCase
         $userType = 'business';
         $operation = 'withdraw';
 
-        $data = new OperationData($amount, $date, $currency, $userId, $userType, $operation);
+        $data = new OperationData(
+            [
+                $date,
+                $userId,
+                $userType,
+                $operation,
+                $amount,
+                $currency
+            ]
+        );
     }
 
     /**
@@ -71,6 +90,15 @@ class OperationDataTest extends TestCase
         $userType = 'business';
         $operation = 'withdraw';
 
-        $data = new OperationData($amount, $date, $currency, $userId, $userType, $operation);
+        $data = new OperationData(
+            [
+                $date,
+                $userId,
+                $userType,
+                $operation,
+                $amount,
+                $currency
+            ]
+        );
     }
 }
